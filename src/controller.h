@@ -6,13 +6,26 @@
 // **When adding a field here, remember to also add it to both `saveConfig()` and `loadConfig()`**
 
 struct TestBenchConfig {
-    std::string inputFile;
+    std::string inputFile = "hi";
 };
 
 class Controller {
-public:        
-    void saveConfig(std::string fn); 
-    void loadConfig(std::string fn);
+public:   
+    Controller();
+    ~Controller();  
+
+    void loadConfig(std::string file);
+
+    // GETTERS
+    std::string getAudioInputFile();
+    TestBenchConfig& getConfig();
+
+private:
+    TestBenchConfig config;
+    const std::string configFile = "testbench_config.json";
+
+    void loadConfig();
+    void saveConfig(); 
 };
 
 

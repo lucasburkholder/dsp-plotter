@@ -10,6 +10,8 @@ public:
     void showMainWindow();
 private:
     std::unique_ptr<Controller> controller;
+
+    void askUserForAudioFile();
 };
 
 #endif /* VIEW_H */

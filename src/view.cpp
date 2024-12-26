@@ -1,6 +1,8 @@
 #ifndef VIEW_CPP
 #define VIEW_CPP
 
+#include <iostream>
+
 #include "view.h"
 #include "imgui.h"
 
@@ -10,18 +12,21 @@ void View::init(Controller * _controller) {
 void View::showMainWindow() {
     ImGui::Begin("LBDSP Test Bench");
 
-    ImGui::Text("Hello world! %s", "This is the test bench");
-
-    std::string configFile = "testbench_config.json";
-
-    if (ImGui::Button("Save Config")) {
-        controller->saveConfig(configFile);
-    }
+    ImGui::Text("Audio file: %s", controller->getAudioInputFile().c_str());
     ImGui::SameLine();
-    if (ImGui::Button("Load Config")) {
-        controller->loadConfig(configFile);
-    }
+    if (ImGui::Button("Select file..."))
+        askUserForAudioFile();
 
     ImGui::End();
 }
+
+/* PRIVATE */
+void View::askUserForAudioFile() {
+    char buf[256];
+    printf("Enter file: ");
+    scanf("%s", buf);
+    auto& config = controller->getConfig();
+    config.inputFile = std::string(buf);
+}
+
 #endif /* VIEW_CPP */
