@@ -5,10 +5,8 @@
 
 #include "view.h"
 #include "imgui.h"
+#include "dialogs.h"
 
-void View::init(Controller * _controller) {
-    controller.reset(_controller);
-}
 void View::showMainWindow() {
     ImGui::Begin("LBDSP Test Bench");
 
@@ -22,11 +20,11 @@ void View::showMainWindow() {
 
 /* PRIVATE */
 void View::askUserForAudioFile() {
-    char buf[256];
-    printf("Enter file: ");
-    scanf("%s", buf);
-    auto& config = controller->getConfig();
-    config.inputFile = std::string(buf);
+    std::string fp = openAudioFileDialog();
+    if (fp != "") {
+        auto& config = controller->getConfig();
+        config.inputFile = fp;
+    }
 }
 
 #endif /* VIEW_CPP */

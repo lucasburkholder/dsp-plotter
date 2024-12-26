@@ -6,10 +6,10 @@
 
 class View {
 public:
-    void init(Controller * _controller);
+    View(Controller * _controller) : controller(_controller) {}
     void showMainWindow();
 private:
-    std::unique_ptr<Controller> controller;
+    Controller *controller;
 
     void askUserForAudioFile();
 };

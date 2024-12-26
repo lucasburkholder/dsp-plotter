@@ -7,6 +7,7 @@ project(LBDSPTestBench  VERSION 1.0
 add_executable(a    src/main.cpp
                     src/controller.cpp
                     src/view.cpp
+                    src/dialogs.cpp
                     libs/imgui/imgui_demo.cpp
                     libs/imgui/imgui_draw.cpp
                     libs/imgui/imgui_tables.cpp
@@ -20,6 +21,8 @@ target_include_directories(a PRIVATE    src
                                         libs/imgui 
                                         libs/json
                                         libs/imgui/backends)
+
+target_compile_options(a PRIVATE -g)
 
 target_link_directories(a PRIVATE ${CMAKE_SOURCE_DIR}/libs/GLFW/bin)
 

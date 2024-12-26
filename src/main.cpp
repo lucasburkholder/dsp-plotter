@@ -41,7 +41,6 @@ static void glfw_error_callback(int error, const char* description)
 }
 
 Controller controller;
-View view;
 
 // Main code
 int main(int, char**)
@@ -123,7 +122,7 @@ int main(int, char**)
     // Our state
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    view.init(&controller);
+    View view(&controller);
 
     // Main loop
     while (!glfwWindowShouldClose(window))

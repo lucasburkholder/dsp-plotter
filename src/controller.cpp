@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_CPP
 #define CONTROLLER_CPP
 
+#include <iostream>
 #include <stdexcept>
 #include <fstream>
 #include <cstdio>
@@ -14,6 +15,7 @@ Controller::Controller() {
 }
 
 Controller::~Controller() {
+    printf("DBG input file = %s\n", config.inputFile.c_str());
     saveConfig();
 }
 
@@ -26,19 +28,19 @@ TestBenchConfig& Controller::getConfig() {
     return config;
 }
 
-
 /* ----- PRIVATE ----- */
 void Controller::saveConfig() {
     json j;
-
+    std::cout << config.inputFile << std::endl;
     j["inputFile"] = config.inputFile;
+    // j["inputFile"] = config.inputFile;
     
     std::ofstream fout(configFile);
     if (fout.fail()) {
         printf("Could not save config file\n");
         return;
     }
-    fout << j;
+    fout << j.dump();
     fout.close();
     printf("Saved config file: %s\n", configFile.c_str());
 }
@@ -49,6 +51,7 @@ void Controller::loadConfig() {
         return;
     }
     json j = json::parse(fin);
+    fin.close();
 
     config.inputFile = std::string(j["inputFile"]);
     
