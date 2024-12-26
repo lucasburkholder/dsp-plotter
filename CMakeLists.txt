@@ -5,6 +5,7 @@ project(LBDSPTestBench  VERSION 1.0
                         LANGUAGES C CXX)
 
 add_executable(a    src/main.cpp
+                    src/view.cpp
                     libs/imgui/imgui_demo.cpp
                     libs/imgui/imgui_draw.cpp
                     libs/imgui/imgui_tables.cpp
