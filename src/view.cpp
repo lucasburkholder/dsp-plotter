@@ -5,6 +5,7 @@
 
 #include "view.h"
 #include "imgui.h"
+#include "implot.h"
 #include "dialogs.h"
 
 void View::showMainWindow() {
@@ -15,6 +16,10 @@ void View::showMainWindow() {
     if (ImGui::Button("Select file..."))
         askUserForAudioFile();
 
+    ImGui::SeparatorText("File plot");
+    if (ImPlot::BeginPlot("Input file")) {
+        ImPlot::EndPlot();
+    }
     ImGui::End();
 }
 
@@ -24,6 +29,7 @@ void View::askUserForAudioFile() {
     if (fp != "") {
         auto& config = controller->getConfig();
         config.inputFile = fp;
+        controller->loadAudioFile(fp);
     }
 }
 

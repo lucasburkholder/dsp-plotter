@@ -15,6 +15,7 @@ public:
     ~Controller();  
 
     void loadConfig(std::string file);
+    void loadAudioFile(std::string path);
 
     // GETTERS
     std::string getAudioInputFile();

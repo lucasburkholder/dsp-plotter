@@ -15,8 +15,11 @@ Controller::Controller() {
 }
 
 Controller::~Controller() {
-    printf("DBG input file = %s\n", config.inputFile.c_str());
     saveConfig();
+}
+
+void Controller::loadAudioFile(std::string path) {
+    std::cout << "loadAudioFile not implemented yet" << std::endl;
 }
 
 /* ---- GETTERS ------ */
@@ -31,13 +34,11 @@ TestBenchConfig& Controller::getConfig() {
 /* ----- PRIVATE ----- */
 void Controller::saveConfig() {
     json j;
-    std::cout << config.inputFile << std::endl;
     j["inputFile"] = config.inputFile;
     
     std::string jsonOut = j.dump();
 
     std::ofstream fout(configFile);
-    std::cout << fout.rdstate() << std::endl;
     if (fout.fail()) {
         printf("Could not save config file\n");
         return;
