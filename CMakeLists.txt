@@ -8,6 +8,8 @@ add_executable(a    src/main.cpp
                     src/controller.cpp
                     src/view.cpp
                     src/dialogs.cpp
+                    libs/implot/implot.cpp
+                    libs/implot/implot_items.cpp
                     libs/imgui/imgui_demo.cpp
                     libs/imgui/imgui_draw.cpp
                     libs/imgui/imgui_tables.cpp
@@ -18,6 +20,7 @@ add_executable(a    src/main.cpp
 
 target_include_directories(a PRIVATE    src 
                                         libs 
+                                        libs/implot
                                         libs/imgui 
                                         libs/json
                                         libs/imgui/backends)

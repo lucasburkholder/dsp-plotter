@@ -33,9 +33,11 @@ void Controller::saveConfig() {
     json j;
     std::cout << config.inputFile << std::endl;
     j["inputFile"] = config.inputFile;
-    // j["inputFile"] = config.inputFile;
     
+    std::string jsonOut = j.dump();
+
     std::ofstream fout(configFile);
+    std::cout << fout.rdstate() << std::endl;
     if (fout.fail()) {
         printf("Could not save config file\n");
         return;
