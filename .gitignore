@@ -2,3 +2,6 @@
 /.vscode*
 imgui.ini
 testbench_config.json
+/Cmakefiles*
+cmake_install.cmake
+CMakeCache.txt

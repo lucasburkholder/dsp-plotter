@@ -8,6 +8,7 @@ add_executable(a    src/main.cpp
                     src/controller.cpp
                     src/view.cpp
                     src/dialogs.cpp
+                    libs/tinywav/tinywav.c
                     libs/implot/implot.cpp
                     libs/implot/implot_items.cpp
                     libs/imgui/imgui_demo.cpp
@@ -19,7 +20,8 @@ add_executable(a    src/main.cpp
                     libs/imgui/backends/imgui_impl_glfw.cpp)
 
 target_include_directories(a PRIVATE    src 
-                                        libs 
+                                        libs
+                                        libs/tinywav
                                         libs/implot
                                         libs/imgui 
                                         libs/json

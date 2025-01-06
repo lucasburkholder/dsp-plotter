@@ -18,6 +18,9 @@ void View::showMainWindow() {
 
     ImGui::SeparatorText("File plot");
     if (ImPlot::BeginPlot("Input file")) {
+        const float *xs = controller->getInputAudioTimes().data();
+        const float *ys = controller->getInputAudioData()[0].data();
+        ImPlot::PlotLine("Input file", xs, ys, 10000);
         ImPlot::EndPlot();
     }
     ImGui::End();
