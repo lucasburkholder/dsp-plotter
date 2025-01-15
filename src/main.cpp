@@ -118,10 +118,14 @@ int main(int, char**)
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != nullptr);
 
+    ImFont* font = io.Fonts->AddFontFromFileTTF("res/Tahoma.ttf", 18.f);
+    IM_ASSERT(font != nullptr);
+
     // Our state
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     DSPPlotter::App app;
+    app.init();
 
     // Main loop
     while (!glfwWindowShouldClose(window))
