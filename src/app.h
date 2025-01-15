@@ -15,6 +15,7 @@ namespace DSPPlotter {
 
     private:
         AppConfig cfg;
+        std::vector<float> inputData, outputData;
     };
 }
 #endif /* APP_H */
