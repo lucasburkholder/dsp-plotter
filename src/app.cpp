@@ -15,7 +15,8 @@ void App::init() {
 }
 
 void App::onFrame() {
-    std::vector<float> inputData(1000);
+    std::vector<float> inputData(100000);
+    std::vector<float> outputData(10000);
     for (uint32_t i = 0; i < inputData.size(); i++) {
         inputData[i] = sinf((float) i / 4.f);
     }
