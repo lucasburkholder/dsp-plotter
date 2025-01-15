@@ -1,13 +1,11 @@
 cmake_minimum_required(VERSION 3.15...3.31)
 
-project(LBDSPTestBench  VERSION 1.0
-                        DESCRIPTION "LBDSP Audio Test Bench"
+project(DSPPlotter  VERSION 1.0
+                        DESCRIPTION "DSP Plotter"
                         LANGUAGES C CXX)
 
 add_executable(a    src/main.cpp
-                    src/controller.cpp
-                    src/view.cpp
-                    src/dialogs.cpp
+                    src/app.cpp
                     libs/tinywav/tinywav.c
                     libs/implot/implot.cpp
                     libs/implot/implot_items.cpp

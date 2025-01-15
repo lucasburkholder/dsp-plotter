@@ -20,9 +20,7 @@
 #endif
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 #include "implot.h"
-
-#include "view.h"
-#include "controller.h"
+#include "app.h"
 
 // [Win32] Our example includes a copy of glfw3.lib pre-compiled with VS2010 to maximize ease of testing and compatibility with old VS compilers.
 // To link with VS2010-era libraries, VS2015+ requires linking with legacy_stdio_definitions.lib, which we do using this pragma.
@@ -41,7 +39,6 @@ static void glfw_error_callback(int error, const char* description)
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
 
-Controller controller;
 
 // Main code
 int main(int, char**)
@@ -124,7 +121,7 @@ int main(int, char**)
     // Our state
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    View view(&controller);
+    DSPPlotter::App app;
 
     // Main loop
     while (!glfwWindowShouldClose(window))
@@ -147,7 +144,7 @@ int main(int, char**)
         ImGui::NewFrame();
 
         ImGui::DockSpaceOverViewport();
-        view.showMainWindow();
+        app.onFrame();
 
         // Rendering
         ImGui::Render();
