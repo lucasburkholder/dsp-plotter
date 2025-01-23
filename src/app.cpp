@@ -2,7 +2,7 @@
 #define APP_CPP
 
 #include <cstdio>
-#include <cmath>
+#include <cmath>    
 #include "imgui.h"
 #include "implot.h"
 #include "app.h"
@@ -47,17 +47,17 @@ void App::onFrame() {
     if (ImGui::Begin("Main window")) {
         // PLOTS
         if (cfg.inOutOverlap) {
-            if (ImPlot::BeginPlot("Audio")) {
+            if (ImPlot::BeginPlot("Audio", ImVec2(-1, -1))) {
                 ImPlot::PlotLine("Input audio", inputData.data(), inputData.size());
                 ImPlot::PlotLine("Output audio", outputData.data(), outputData.size());
                 ImPlot::EndPlot();
             }
         } else {
-            if (ImPlot::BeginPlot("Input audio")) {
+            if (ImPlot::BeginPlot("Input audio", ImVec2(-1, ImGui::GetContentRegionAvail().y / 2.f))) {
                 ImPlot::PlotLine("Input audio", inputData.data(), inputData.size());
                 ImPlot::EndPlot();
             }
-            if (ImPlot::BeginPlot("Output audio")) {
+            if (ImPlot::BeginPlot("Output audio", ImVec2(-1, ImGui::GetContentRegionAvail().y))) {
                 ImPlot::PlotLine("Output audio", outputData.data(), outputData.size());
                 ImPlot::EndPlot();
             }
