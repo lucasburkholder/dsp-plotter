@@ -33,6 +33,7 @@ void App::init() {
     }
 
     // Do some processing (replace with DUT)
+    // TODO replace with DUT
     outputData.resize(inputData.size());
     for (uint32_t i = 0; i < outputData.size(); i++) {
         outputData[i] = fabsf(inputData[i]) - 0.5; // ABS distortion
