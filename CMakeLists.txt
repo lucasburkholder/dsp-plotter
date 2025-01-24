@@ -25,9 +25,8 @@ target_include_directories(dsp-plotter  PRIVATE src
                                                 libs/implot
                                                 libs/imgui 
                                                 libs/json
-                                                libs/imgui/backends
-                                                
-                                        PUBLIC  inc)
+                                                libs/imgui/backends)
+target_include_directories(dsp-plotter  PUBLIC ${CMAKE_CURRENT_LIST_DIR}/inc)                                                
 
 target_compile_options(dsp-plotter PRIVATE -g)
 target_link_libraries(dsp-plotter PRIVATE ${CMAKE_CURRENT_LIST_DIR}/libs/glfw/bin/libglfw3.a opengl32)

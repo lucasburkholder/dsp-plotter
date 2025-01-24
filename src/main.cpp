@@ -27,7 +27,7 @@ static void glfw_error_callback(int error, const char* description)
 }
 
 // Main code
-int open()
+extern "C" int dsp_plotter_open()
 {
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
