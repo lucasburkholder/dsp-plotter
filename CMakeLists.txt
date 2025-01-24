@@ -19,13 +19,15 @@ add_library(dsp-plotter STATIC  src/main.cpp
                                 libs/imgui/backends/imgui_impl_opengl3.cpp
                                 libs/imgui/backends/imgui_impl_glfw.cpp)
 
-target_include_directories(dsp-plotter PRIVATE  src 
+target_include_directories(dsp-plotter  PRIVATE src 
                                                 libs
                                                 libs/tinywav
                                                 libs/implot
                                                 libs/imgui 
                                                 libs/json
-                                                libs/imgui/backends)
+                                                libs/imgui/backends
+                                                
+                                        PUBLIC  inc)
 
 target_compile_options(dsp-plotter PRIVATE -g)
 target_link_libraries(dsp-plotter PRIVATE ${CMAKE_CURRENT_LIST_DIR}/libs/glfw/bin/libglfw3.a opengl32)
