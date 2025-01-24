@@ -4,6 +4,8 @@
 #                         DESCRIPTION "DSP Plotter"
 #                         LANGUAGES C CXX)
 
+include(CMakePrintHelpers)
+
 add_library(dsp-plotter STATIC  src/main.cpp
                                 src/app.cpp
                                 libs/tinywav/tinywav.c
@@ -26,7 +28,4 @@ target_include_directories(dsp-plotter PRIVATE  src
                                                 libs/imgui/backends)
 
 target_compile_options(dsp-plotter PRIVATE -g)
-
-target_link_directories(dsp-plotter PRIVATE ${CMAKE_SOURCE_DIR}/libs/GLFW/bin)
-
-target_link_libraries(dsp-plotter PRIVATE glfw3 opengl32)
+target_link_libraries(dsp-plotter PRIVATE ${CMAKE_CURRENT_LIST_DIR}/libs/glfw/bin/libglfw3.a opengl32)
