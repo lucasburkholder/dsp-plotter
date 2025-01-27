@@ -27,11 +27,11 @@ static void glfw_error_callback(int error, const char* description)
 }
 
 // Main code
-extern "C" int dsp_plotter_open()
+extern "C" int DspPlotter_show()
 {
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
-        return 1;
+        return DspPlotterErr_Error;
 
     // Decide GL+GLSL versions
 #if defined(IMGUI_IMPL_OPENGL_ES2)
@@ -63,7 +63,7 @@ extern "C" int dsp_plotter_open()
     // Create window with graphics context
     GLFWwindow* window = glfwCreateWindow(1280, 720, "LBDSP Audio Testbench", nullptr, nullptr);
     if (window == nullptr)
-        return 1;
+        return DspPlotterErr_Error;
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1); // Enable vsync
 
@@ -135,7 +135,7 @@ extern "C" int dsp_plotter_open()
     glfwDestroyWindow(window);
     glfwTerminate();
 
-    return 0;
+    return DspPlotterErr_NoError;
 }
 
 
