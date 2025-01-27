@@ -21,14 +21,34 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
+
+#ifndef DSPPLOTTER_BASE_DIR
+    #error "DSP Plotter base directory not set at compile-time. Don't know where to find fonts, etc."
+#endif
+
+GLFWwindow* window;
+ImVec4 clear_color;
+DSPPlotter::App app;
+
 static void glfw_error_callback(int error, const char* description)
 {
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
 
-// Main code
-extern "C" int DspPlotter_show()
-{
+extern "C" int DspPlotter_init(char *wavFilePath) {
+    // Paths
+    char * baseDir = DSPPLOTTER_BASE_DIR;
+    uint32_t baseDirLen = strlen(baseDir);
+    uint32_t resDirLen = baseDirLen + 4; // .../res
+    uint32_t fontPathLen = resDirLen + 11; // .../res/Tahoma.ttf
+    char resDir[resDirLen];
+    strcpy(resDir, baseDir);
+    strcat(resDir, "/res");
+
+    char fontPath[fontPathLen];
+    strcpy(fontPath, resDir);
+    strcat(fontPath, "/Tahoma.ttf");
+
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
         return DspPlotterErr_Error;
@@ -61,7 +81,7 @@ extern "C" int DspPlotter_show()
 #endif
 
     // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "LBDSP Audio Testbench", nullptr, nullptr);
+    window = glfwCreateWindow(1280, 720, "LBDSP Audio Testbench", nullptr, nullptr);
     if (window == nullptr)
         return DspPlotterErr_Error;
     glfwMakeContextCurrent(window);
@@ -88,14 +108,23 @@ extern "C" int DspPlotter_show()
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     // Load Fonts
-    ImFont* font = io.Fonts->AddFontFromFileTTF("res/Tahoma.ttf", 18.f);
+    printf("Font path: %s\n", fontPath);
+
+    ImFont* font = io.Fonts->AddFontFromFileTTF(fontPath, 18.f);
     IM_ASSERT(font != nullptr);
 
     // Our state
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    DSPPlotter::App app;
-    app.init();
+    app.init(wavFilePath);
+
+    return DspPlotterErr_NoError;
+}
+
+// Main code
+extern "C" int DspPlotter_show()
+{
+    
 
     // Main loop
     while (!glfwWindowShouldClose(window))

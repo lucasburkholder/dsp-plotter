@@ -11,7 +11,8 @@ enum _dsp_plotter_error {
 };
 typedef enum _dsp_plotter_error DSPPlotterErr;
 
-int DspPlotter_show(); // TODO change these names to dspPlotter_show() or similar
+int DspPlotter_init(char * wavFilePath);
+int DspPlotter_show();
 
 #ifdef __cplusplus
 }

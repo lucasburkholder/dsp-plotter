@@ -10,7 +10,7 @@ namespace DSPPlotter {
     };
     class App {
     public:
-        void init();
+        void init(char* wavFilePath);
         void onFrame();
 
     private:

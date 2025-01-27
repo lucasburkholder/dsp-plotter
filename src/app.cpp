@@ -10,20 +10,23 @@
 
 using namespace DSPPlotter;
 
-#define INPUT_FILE_PATH "audio/bass_jet.wav"
 #define BUFFER_SIZE 512 // In samples per channel, used while loading file
 
-void App::init() {
+void App::init(char* wavFilePath) {
     // Load audio file
     TinyWav tw;
-    tinywav_open_read(&tw, INPUT_FILE_PATH, TW_SPLIT);
+    tinywav_open_read(&tw, wavFilePath, TW_SPLIT);
     inputData.resize(tw.numFramesInHeader);
     float buf[tw.numChannels * BUFFER_SIZE];
     float * samplePtrs[tw.numChannels];
     for (int chan = 0; chan < tw.numChannels; chan++) {
         samplePtrs[chan] = buf + chan * BUFFER_SIZE;
     }
-    
+
+    if (tw.numChannels > 0) {
+        printf("Selected file has %d channels, but plotter only currently supports 1. Ignoring all channels except the first.\n", tw.numChannels);
+    }    
+
     uint32_t channelToRead = 0;
     uint32_t writeIdx = 0;
     while (1) {
