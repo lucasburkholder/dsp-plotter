@@ -1,5 +1,5 @@
-#ifndef MAIN_CPP
-#define MAIN_CPP
+#ifndef DSP_PLOTTER_CPP
+#define DSP_PLOTTER_CPP
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -134,8 +134,6 @@ extern "C" int DspPlotter_init(char *wavFilePath) {
 // Main code
 extern "C" int DspPlotter_show()
 {
-    
-
     // Main loop
     while (!glfwWindowShouldClose(window))
     {
@@ -178,4 +176,4 @@ extern "C" int DspPlotter_show()
 }
 
 
-#endif /* MAIN_CPP */
+#endif /* DSP_PLOTTER_CPP */
