@@ -13,6 +13,7 @@
 #include "implot.h"
 #include "app.h"
 #include "dsp-plotter.h"
+#include "tinywav/tinywav.h"
 
 // [Win32] Our example includes a copy of glfw3.lib pre-compiled with VS2010 to maximize ease of testing and compatibility with old VS compilers.
 // To link with VS2010-era libraries, VS2015+ requires linking with legacy_stdio_definitions.lib, which we do using this pragma.
@@ -36,6 +37,15 @@ static void glfw_error_callback(int error, const char* description)
 }
 
 extern "C" int DspPlotter_init(char *wavFilePath) {
+    // Try opening wav file just to make sure it works
+    TinyWav tw;
+    int err = tinywav_open_read(&tw, wavFilePath, TW_SPLIT);
+    if (err != 0) {
+        fprintf(stderr, "ERROR: Could not open wav file\n");
+        return DspPlotterErr_CouldNotOpenWavFile;
+    }
+    tinywav_close_read(&tw);
+
     // Paths
     char * baseDir = DSPPLOTTER_BASE_DIR;
     uint32_t baseDirLen = strlen(baseDir);

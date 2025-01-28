@@ -42,6 +42,9 @@ void App::init(char* wavFilePath) {
         outputData[i] = fabsf(inputData[i]) - 0.5; // ABS distortion
     }
 
+    // Close file
+    tinywav_close_read(&tw);
+
     // Configure
     cfg.inOutOverlap = false;
     return;

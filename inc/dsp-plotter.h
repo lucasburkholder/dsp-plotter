@@ -7,7 +7,8 @@ extern "C" {
 
 enum _dsp_plotter_error {
     DspPlotterErr_NoError = 0,
-    DspPlotterErr_Error = 1            // Generic error
+    DspPlotterErr_Error = 1,            // Generic error
+    DspPlotterErr_CouldNotOpenWavFile,  // Tinywav could not open the file
 };
 typedef enum _dsp_plotter_error DSPPlotterErr;
 
