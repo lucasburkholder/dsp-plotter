@@ -36,7 +36,11 @@ static void glfw_error_callback(int error, const char* description)
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
 
-extern "C" int DspPlotter_init(char *wavFilePath) {
+extern "C" int DspPlotter_init( char *wavFilePath, 
+                                startupFunc_t startupFunc, 
+                                processFunc_t processFunc,
+                                shutdownFunc_t shutdownFunc) {
+
     // Try opening wav file just to make sure it works
     TinyWav tw;
     int err = tinywav_open_read(&tw, wavFilePath, TW_SPLIT);
@@ -126,7 +130,7 @@ extern "C" int DspPlotter_init(char *wavFilePath) {
     // Our state
     clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    app.init(wavFilePath);
+    app.init(wavFilePath, startupFunc, processFunc, shutdownFunc);
 
     return DspPlotterErr_NoError;
 }

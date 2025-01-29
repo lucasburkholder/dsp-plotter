@@ -8,7 +8,7 @@ include(CMakePrintHelpers)
 
 add_compile_definitions(DSPPLOTTER_BASE_DIR="${CMAKE_CURRENT_LIST_DIR}")
 
-add_library(dsp-plotter STATIC  src/main.cpp
+add_library(dsp-plotter STATIC  src/dsp-plotter.cpp
                                 src/app.cpp
                                 libs/tinywav/tinywav.c
                                 libs/implot/implot.cpp

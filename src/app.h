@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cstdint>
+#include "dsp-plotter.h"
 
 namespace DSPPlotter {
     struct AppConfig {
@@ -10,7 +11,7 @@ namespace DSPPlotter {
     };
     class App {
     public:
-        void init(char* wavFilePath);
+        void init(char* wavFilePath, startupFunc_t, processFunc_t, shutdownFunc_t);
         void onFrame();
 
     private:

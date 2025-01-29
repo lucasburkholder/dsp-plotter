@@ -12,7 +12,7 @@ using namespace DSPPlotter;
 
 #define BUFFER_SIZE 512 // In samples per channel, used while loading file
 
-void App::init(char* wavFilePath) {
+void App::init(char* wavFilePath, startupFunc_t startupFunc, processFunc_t processFunc, shutdownFunc_t shutdownFunc) {
     // Load audio file
     TinyWav tw;
     tinywav_open_read(&tw, wavFilePath, TW_SPLIT);
@@ -36,11 +36,17 @@ void App::init(char* wavFilePath) {
     }
 
     // Do some processing (replace with DUT)
-    // TODO replace with DUT
+    int err;
     outputData.resize(inputData.size());
-    for (uint32_t i = 0; i < outputData.size(); i++) {
-        outputData[i] = fabsf(inputData[i]) - 0.5; // ABS distortion
-    }
+
+    err = (*startupFunc)();
+    if (err) fprintf(stderr, "Error in startup function: %d\n", err);
+
+    err = (*processFunc)(inputData.data(), outputData.data(), inputData.size());
+    if (err) fprintf(stderr, "Error in process function: %d\n", err);
+
+    err = (*shutdownFunc)();
+    if (err) fprintf(stderr, "Error in shutdown function: %d\n", err);
 
     // Close file
     tinywav_close_read(&tw);

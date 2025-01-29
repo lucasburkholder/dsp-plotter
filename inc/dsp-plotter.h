@@ -12,7 +12,14 @@ enum _dsp_plotter_error {
 };
 typedef enum _dsp_plotter_error DSPPlotterErr;
 
-int DspPlotter_init(char * wavFilePath);
+typedef int (* startupFunc_t) ();
+typedef int (* processFunc_t) (float *, float *, uint32_t);
+typedef int (* shutdownFunc_t) ();
+
+int DspPlotter_init(    char * wavFilePath, 
+                        startupFunc_t startupFunc, 
+                        processFunc_t processFunc,
+                        shutdownFunc_t shutdownFunc);
 int DspPlotter_show();
 
 #ifdef __cplusplus
