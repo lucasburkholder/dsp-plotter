@@ -37,6 +37,7 @@ static void glfw_error_callback(int error, const char* description)
 }
 
 extern "C" int DspPlotter_init( char *wavFilePath, 
+                                uint32_t frameSize,
                                 startupFunc_t startupFunc, 
                                 processFunc_t processFunc,
                                 shutdownFunc_t shutdownFunc) {
@@ -130,7 +131,7 @@ extern "C" int DspPlotter_init( char *wavFilePath,
     // Our state
     clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    app.init(wavFilePath, startupFunc, processFunc, shutdownFunc);
+    app.init(wavFilePath, frameSize, startupFunc, processFunc, shutdownFunc);
 
     return DspPlotterErr_NoError;
 }

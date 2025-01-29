@@ -11,7 +11,7 @@ namespace DSPPlotter {
     };
     class App {
     public:
-        void init(char* wavFilePath, startupFunc_t, processFunc_t, shutdownFunc_t);
+        void init(char* wavFilePath, uint32_t frameSize, startupFunc_t, processFunc_t, shutdownFunc_t);
         void onFrame();
 
     private:
