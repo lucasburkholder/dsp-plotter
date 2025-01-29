@@ -1,8 +1,12 @@
 #ifndef DSP_PLOTTER_H
 #define DSP_PLOTTER_H
 
+
 #ifdef __cplusplus
+#include <cstdint>
 extern "C" {
+#else
+#include <stdint.h>
 #endif
 
 enum _dsp_plotter_error {
