@@ -5,6 +5,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include <stdio.h>
+#include <string>
 #define GL_SILENCE_DEPRECATION
 #if defined(IMGUI_IMPL_OPENGL_ES2)
 #include <GLES2/gl2.h>
@@ -52,7 +53,7 @@ extern "C" int DspPlotter_init( char *wavFilePath,
     tinywav_close_read(&tw);
 
     // Paths
-    char * baseDir = DSPPLOTTER_BASE_DIR;
+    const char * baseDir = std::string(DSPPLOTTER_BASE_DIR).c_str();
     uint32_t baseDirLen = strlen(baseDir);
     uint32_t resDirLen = baseDirLen + 4; // .../res
     uint32_t fontPathLen = resDirLen + 11; // .../res/Tahoma.ttf
@@ -96,12 +97,12 @@ extern "C" int DspPlotter_init( char *wavFilePath,
 #endif
 
     // Create window with graphics context
-    char * prefix = "DSP Plotter: ";
-    char windowTitle[strlen(prefix) + strlen(wavFilePath)];
-    strcpy(windowTitle, prefix);
+    std::string prefix( "DSP Plotter: ");
+    char windowTitle[prefix.size() + strlen(wavFilePath)];
+    strcpy(windowTitle, prefix.c_str());
     strcat(windowTitle, wavFilePath);
     
-    window = glfwCreateWindow(1280, 720, "DSP Plotter", nullptr, nullptr);
+    window = glfwCreateWindow(1280, 720, windowTitle, nullptr, nullptr);
     if (window == nullptr)
         return DspPlotterErr_Error;
     glfwMakeContextCurrent(window);
