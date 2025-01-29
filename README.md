@@ -2,6 +2,8 @@
 
 This is a tool used for quick plotting of DSP algorithms. It is written in C++ as a library with a C API for easy use in C or C++ projects. You just provide the startup, process, and shutdown functions for your algorithm, along with the path to a .wav file. The tool will load the file, process it through your algorithm, and display the input and output waveforms on a nice-looking plot.
 
+![Screenshot of program](docs/screenshot.png)
+
 ## How to use
 1) Pull in DSP Plotter to your project as submodule with 
 ```
