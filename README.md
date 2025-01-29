@@ -22,3 +22,9 @@ target_link_libraries(<main_target_name> dsp-plotter)
 5) Call `DspPlotter_show()` to show the window.
 
 That's it! When you build and run executable `<main_target_name>`, the plot should pop up showing your input and output data.
+
+## Credits
+- Wav files: [TinyWav](https://github.com/mhroth/tinywav)
+- GUI: [Dear ImGui](https://github.com/ocornut/imgui)
+- Plotting: [ImPlot](https://github.com/epezent/implot)
+- Window: [GLFW](https://www.glfw.org/)

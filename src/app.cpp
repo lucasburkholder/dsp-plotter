@@ -55,7 +55,6 @@ void App::init(char* wavFilePath, uint32_t frameSize, startupFunc_t startupFunc,
             err = (*processFunc)(lastFrame_in.data(), lastFrame_out.data());
             if (err) fprintf(stderr, "Error in process function: %d\n", err);
 
-            // std::copy(lastFrame_out.begin(), lastFrame_out.begin(), outputData.begin() + idx);
             std::copy_n(lastFrame_out.data(), outputData.size() - idx, outputData.begin() + idx);
             
             break;
