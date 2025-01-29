@@ -96,7 +96,12 @@ extern "C" int DspPlotter_init( char *wavFilePath,
 #endif
 
     // Create window with graphics context
-    window = glfwCreateWindow(1280, 720, "LBDSP Audio Testbench", nullptr, nullptr);
+    char * prefix = "DSP Plotter: ";
+    char windowTitle[strlen(prefix) + strlen(wavFilePath)];
+    strcpy(windowTitle, prefix);
+    strcat(windowTitle, wavFilePath);
+    
+    window = glfwCreateWindow(1280, 720, "DSP Plotter", nullptr, nullptr);
     if (window == nullptr)
         return DspPlotterErr_Error;
     glfwMakeContextCurrent(window);
