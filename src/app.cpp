@@ -87,11 +87,14 @@ void App::onFrame() {
                 ImPlot::EndPlot();
             }
         } else {
+            ImPlotRect limits;
             if (ImPlot::BeginPlot("Input audio", ImVec2(-1, ImGui::GetContentRegionAvail().y / 2.f))) {
                 ImPlot::PlotLine("Input audio", inputData.data(), inputData.size());
+                limits = ImPlot::GetPlotLimits();
                 ImPlot::EndPlot();
             }
             if (ImPlot::BeginPlot("Output audio", ImVec2(-1, ImGui::GetContentRegionAvail().y))) {
+                ImPlot::SetupAxisLimits(ImAxis_X1, limits.X.Min, limits.X.Max, ImPlotCond_Always);
                 ImPlot::PlotLine("Output audio", outputData.data(), outputData.size());
                 ImPlot::EndPlot();
             }
