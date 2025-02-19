@@ -53,7 +53,7 @@ extern "C" int DspPlotter_init( char *wavFilePath,
     tinywav_close_read(&tw);
 
     // Paths
-    const char * baseDir = std::string(DSPPLOTTER_BASE_DIR).c_str();
+    const char * baseDir = DSPPLOTTER_BASE_DIR;
     uint32_t baseDirLen = strlen(baseDir);
     uint32_t resDirLen = baseDirLen + 4; // .../res
     uint32_t fontPathLen = resDirLen + 11; // .../res/Tahoma.ttf
